@@ -9,6 +9,7 @@ import getFormattedWeatherData from "../services/weatherService";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 
 export default function Home() {
 
@@ -42,6 +43,29 @@ export default function Home() {
 
     return "from-yellow-700 to-orange-700";
   };
+  const handleLocationClick = () => {
+    if (navigator.geolocation) {
+      toast.info("Fetching users location.");
+      navigator.geolocation.getCurrentPosition((position) => {
+        toast.success("Location fetched!");
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+        setQuery({
+          lat,
+          lon,
+        });
+      });
+    }
+  };
+  const handleUnitsChange = (e) => {
+    const selectedUnit = e.currentTarget.name;
+    if (units !== selectedUnit) setUnits(selectedUnit);
+  };
+
+  const handleSearchClick = () => {
+    if (city !== "") setQuery({ q: city });
+  };
 
 
   return (
@@ -61,12 +85,37 @@ export default function Home() {
         {weather && (
           <div>
             <TimeAndLocation weather={weather} />
+            <div className="flex justify-center">
+              <div className="flex flex-row w-1/4 items-center justify-center">
+                <UilLocationPoint
+                  size={25}
+                  className="text-white cursor-pointer transition ease-out hover:scale-125"
+                  onClick={handleLocationClick}
+                />
+                <button
+                  name="metric"
+                  className="text-xl text-white font-light transition ease-out hover:scale-125"
+                  onClick={handleUnitsChange}
+                >
+                  °C
+                </button>
+                <p className="text-xl text-white mx-1">|</p>
+                <button
+                  name="imperial"
+                  className="text-xl text-white font-light transition ease-out hover:scale-125"
+                  onClick={handleUnitsChange}
+                >
+                  °F
+                </button>
+              </div>
+            </div>
+
             <TemperatureAndDetails weather={weather} />
             {/* <div className="h- w-10">
             <Image src="/img1.jpg" alt=""
                  layout="fill" />
             </div> */}
-            
+
             <Forecast title="hourly forecast" items={weather.hourly} />
             <Forecast title="daily forecast" items={weather.daily} />
           </div>
