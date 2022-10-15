@@ -39,9 +39,9 @@ export default function Home() {
   const formatBackground = () => {
     if (!weather) return "from-cyan-700 to-blue-700";
     const threshold = units === "metric" ? 20 : 60;
-    if (weather.temp <= threshold) return "from-cyan-700 to-blue-700";
+    if (weather.temp <= threshold) return "from-sky-500 to-orange-500";
 
-    return "from-yellow-700 to-orange-700";
+    return "from-orange-500 to-sky-500";
   };
   const handleLocationClick = () => {
     if (navigator.geolocation) {
