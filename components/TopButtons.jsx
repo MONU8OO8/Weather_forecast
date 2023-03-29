@@ -6,6 +6,8 @@ import tokyo from "/public/tokyo.jpg"
 import sydney from "/public/sydney.jpg"
 import lucknow from "/public/lucknow.webp"
 
+
+
 function TopButtons({ setQuery }) {
   const cities = [
     {

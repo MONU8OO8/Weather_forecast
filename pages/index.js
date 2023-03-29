@@ -79,7 +79,7 @@ export default function Home() {
       <div
         className={`mx-auto py-5 px-4 md:py-5 md:px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
       >
-        <TopButtons setQuery={setQuery} />
+        {/* <TopButtons setQuery={setQuery} /> */}
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
         {weather && (
