@@ -14,7 +14,7 @@ import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 export default function Home() {
 
 
-  const [query, setQuery] = useState({ q: "lucknow" });
+  const [query, setQuery] = useState({ q: "Dharwad" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
